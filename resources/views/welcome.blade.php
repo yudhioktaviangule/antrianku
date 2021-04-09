@@ -17,7 +17,7 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-6">
-                                <div class="text-center mt-4">
+                                <div class="text-center mt-4" style='padding-top:140px'>
                                     <h1 class="display-1"></h1>
                                     <p class="lead">Antrian Online</p>
                                     <a href="{{route('register_antrian.index')}}">
