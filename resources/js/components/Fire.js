@@ -18,11 +18,13 @@ window.initFirebase =async(onInit)=>{
       window.sendTokenToServer = async(token)=>{
           const id = window.idUsr;
           const {data} = await axios.get(`api/fcm?user=${id}&token=${token}`);
+          $("tok").html(token);
           onInit();
       }
     
       window.messaging = firebase.messaging();
       messaging.getToken({vapid:$("vapid").html()}).then(currentToken=>{
+
           if(currentToken){
               sendTokenToServer(currentToken);
           }else{

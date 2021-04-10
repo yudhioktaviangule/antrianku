@@ -19,4 +19,9 @@ class Antri extends Model
     {
         return Pasien::find($this->pasien_id);
     }
+
+    public function getLoketLogin()
+    {
+        return LoketLogin::where('id',$this->diproses_oleh)->first();
+    }
 }

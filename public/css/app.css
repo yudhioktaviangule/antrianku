@@ -6,3 +6,8 @@
 .t4 {
   font-size: 0.6em;
 }
+
+.alert-light-primary, .card-light-prim {
+  background: #b2d8f7;
+  color: #0a4779;
+}

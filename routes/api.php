@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Api\AntrianApi;
+use App\Http\Controllers\Api\AntrianViewApi;
+use App\Http\Controllers\Api\SesiLoginAPI;
 use App\Http\Controllers\Api\SubscribeToken;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,3 +25,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::resource('fcm',SubscribeToken::class);
 Route::resource('antriapi',AntrianApi::class);
+Route::resource('antriviewapi',AntrianViewApi::class);
+Route::get('ceksesi/{id?}',[SesiLoginAPI::class,'sesi']);
+Route::get('setsesi/{user_id?}/{loket_id?}',[SesiLoginAPI::class,'pilihLoket']);

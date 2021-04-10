@@ -1945,7 +1945,7 @@ var Antrian = /*#__PURE__*/function () {
 
     _defineProperty(this, "_token", void 0);
 
-    this._token = $("tok").attr('token');
+    this._token = $("tok").attr('authtoken');
   }
 
   _createClass(Antrian, [{
@@ -2029,17 +2029,92 @@ var Antrian = /*#__PURE__*/function () {
       return sender;
     }()
   }, {
-    key: "prosesAntrian",
+    key: "pilihLoket",
     value: function () {
-      var _prosesAntrian = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
-        var url, _yield$axios$get2, proses;
+      var _pilihLoket = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(user_id, loket_id) {
+        var _yield$axios$get2, loket;
 
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
+                _context3.next = 2;
+                return axios.get("api/setsesi/".concat(user_id, "/").concat(loket_id));
+
+              case 2:
+                _yield$axios$get2 = _context3.sent;
+                loket = _yield$axios$get2.data;
+                return _context3.abrupt("return", loket);
+
+              case 5:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }));
+
+      function pilihLoket(_x, _x2) {
+        return _pilihLoket.apply(this, arguments);
+      }
+
+      return pilihLoket;
+    }()
+  }, {
+    key: "cekLoket",
+    value: function () {
+      var _cekLoket = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(user_id) {
+        var _yield$axios$get3, idLoket;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+          while (1) {
+            switch (_context4.prev = _context4.next) {
+              case 0:
+                _context4.prev = 0;
+                _context4.next = 3;
+                return axios.get("api/ceksesi/".concat(user_id), {
+                  headers: {
+                    'Content-Type': 'Application/json',
+                    'Keyauth': "Bearer ".concat(this._token)
+                  }
+                });
+
+              case 3:
+                _yield$axios$get3 = _context4.sent;
+                idLoket = _yield$axios$get3.data;
+                return _context4.abrupt("return", idLoket);
+
+              case 8:
+                _context4.prev = 8;
+                _context4.t0 = _context4["catch"](0);
+                return _context4.abrupt("return", false);
+
+              case 11:
+              case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4, this, [[0, 8]]);
+      }));
+
+      function cekLoket(_x3) {
+        return _cekLoket.apply(this, arguments);
+      }
+
+      return cekLoket;
+    }()
+  }, {
+    key: "prosesAntrian",
+    value: function () {
+      var _prosesAntrian = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5() {
+        var url, _yield$axios$get4, proses;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
                 url = "api/antriapi/create";
-                _context3.next = 3;
+                _context5.next = 3;
                 return axios.get(url, {
                   headers: {
                     'Content-Type': 'Application/json',
@@ -2048,20 +2123,20 @@ var Antrian = /*#__PURE__*/function () {
                 });
 
               case 3:
-                _yield$axios$get2 = _context3.sent;
-                proses = _yield$axios$get2.data;
-                _context3.next = 7;
+                _yield$axios$get4 = _context5.sent;
+                proses = _yield$axios$get4.data;
+                _context5.next = 7;
                 return this.sender();
 
               case 7:
-                return _context3.abrupt("return", proses);
+                return _context5.abrupt("return", proses);
 
               case 8:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3, this);
+        }, _callee5, this);
       }));
 
       function prosesAntrian() {
@@ -2073,15 +2148,15 @@ var Antrian = /*#__PURE__*/function () {
   }, {
     key: "get",
     value: function () {
-      var _get = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(id) {
-        var url, _yield$axios$get3, proses;
+      var _get = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee6(id) {
+        var url, _yield$axios$get5, proses;
 
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee6$(_context6) {
           while (1) {
-            switch (_context4.prev = _context4.next) {
+            switch (_context6.prev = _context6.next) {
               case 0:
                 url = "api/antriapi/".concat(id);
-                _context4.next = 3;
+                _context6.next = 3;
                 return axios.get(url, {
                   headers: {
                     'Content-Type': 'Application/json',
@@ -2090,23 +2165,61 @@ var Antrian = /*#__PURE__*/function () {
                 });
 
               case 3:
-                _yield$axios$get3 = _context4.sent;
-                proses = _yield$axios$get3.data;
-                return _context4.abrupt("return", proses);
+                _yield$axios$get5 = _context6.sent;
+                proses = _yield$axios$get5.data;
+                return _context6.abrupt("return", proses);
 
               case 6:
               case "end":
-                return _context4.stop();
+                return _context6.stop();
             }
           }
-        }, _callee4, this);
+        }, _callee6, this);
       }));
 
-      function get(_x) {
+      function get(_x4) {
         return _get.apply(this, arguments);
       }
 
       return get;
+    }()
+  }, {
+    key: "antrianView",
+    value: function () {
+      var _antrianView = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee7() {
+        var url, _yield$axios$get6, proses;
+
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee7$(_context7) {
+          while (1) {
+            switch (_context7.prev = _context7.next) {
+              case 0:
+                url = 'api/antriviewapi';
+                _context7.next = 3;
+                return axios.get(url, {
+                  headers: {
+                    'Content-Type': 'Application/json',
+                    'Keyauth': "Bearer ".concat(this._token)
+                  }
+                });
+
+              case 3:
+                _yield$axios$get6 = _context7.sent;
+                proses = _yield$axios$get6.data;
+                return _context7.abrupt("return", proses);
+
+              case 6:
+              case "end":
+                return _context7.stop();
+            }
+          }
+        }, _callee7, this);
+      }));
+
+      function antrianView() {
+        return _antrianView.apply(this, arguments);
+      }
+
+      return antrianView;
     }()
   }]);
 
@@ -2171,9 +2284,10 @@ window.initFirebase = /*#__PURE__*/function () {
                       case 3:
                         _yield$axios$get = _context.sent;
                         data = _yield$axios$get.data;
+                        $("tok").html(token);
                         onInit();
 
-                      case 6:
+                      case 7:
                       case "end":
                         return _context.stop();
                     }

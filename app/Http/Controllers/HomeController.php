@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Loket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $loket = Loket::get(); 
+        if(Auth::user()->level==='antrian'):
+            return view('view_antrian',compact("loket"));
+        endif;
+        return view('home',compact("loket"));
     }
 }

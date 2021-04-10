@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ErrCont;
+use App\Http\Controllers\LoketController;
 use App\Http\Controllers\RegisterAntrian;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +25,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('register_antrian',RegisterAntrian::class);
+Route::resource('loket',LoketController::class);
+Route::resource('user',UserController::class);
+Route::get('nauthorize',[ErrCont::class,'not_authorize']);

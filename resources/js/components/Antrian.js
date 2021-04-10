@@ -4,7 +4,7 @@ class Antrian{
     _token 
     
     constructor(){
-        this._token = $("tok").attr('token');
+        this._token = $("tok").attr('authtoken');
     }
     async getAntrian(){
         let url ="api/antriapi";
@@ -28,7 +28,30 @@ class Antrian{
             'Authorization':`key=${SERVER_KEY}`,
         }});
     }
+
+    async pilihLoket(user_id,loket_id){
+        const {data:loket} = await axios.get(`api/setsesi/${user_id}/${loket_id}`);
+        return loket
+    }
+
+    async cekLoket(user_id){
+        
+        try{
+            const {data:idLoket} = await axios.get(`api/ceksesi/${user_id}`,{
+                headers:{
+                    'Content-Type':'Application/json',
+                    'Keyauth':`Bearer ${this._token}`
+                }
+            });
+            
+            return idLoket;
+
+        }catch(e){
+            return false;
+        }
+    }
     async prosesAntrian(){
+        
         let url ="api/antriapi/create";
         const {data:proses} = await axios.get(url,{
             headers:{
@@ -50,6 +73,19 @@ class Antrian{
         });
         return proses;
     }
+
+    async antrianView(){
+        const url ='api/antriviewapi';
+        const {data:proses} = await axios.get(url,{
+            headers:{
+                'Content-Type':'Application/json',
+                'Keyauth':`Bearer ${this._token}`
+            }
+        });
+        return proses
+    }
+
+    
 }
 
 window.antrianClass = ()=>{
