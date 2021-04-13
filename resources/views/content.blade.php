@@ -18,19 +18,15 @@
                 left:0;
                 right:0;
                 bottom:0;
-                margin-top:-40px;
-                margin-left:-20px;
+
                 z-index: 1;
                 display: block;
-                background: url('{{asset("antrian2/dist/img/photo4.jpg")}}') center center;
-               
-                width: 150vw;
-                height: 150vh;
-                -webkit-filter: blur(15px);
-                -moz-filter: blur(15px);
-                -o-filter: blur(15px);
-                -ms-filter: blur(15px);
-                filter: blur(15px);
+                background: rgba(0,0,0,0.3) url('{{asset("antrian2/dist/img/photo4.jpg")}}') center center;
+                background-blend-mode: darken;
+                background-size: cover;
+                width: 100vw;
+                height: 100vh;
+ 
             }
 
             .mcontent {
@@ -45,13 +41,17 @@
         </style>
     </head>
     <body style='overflow-x: hidden;'>
-            <div class="background-image"></div>
-            <div class="mcontent row justify-content-center" >
-                @yield('content')
+            <div class="container-fluid">
+                <div class="background-image"></div>
+                <div class="mcontent row justify-content-center" >
+                
+                    @yield('content')
+                </div>
             </div>
         
         <script src="{{asset('antrian2/plugins/jquery/jquery.min.js')}}"></script>
         <script src="{{asset('antrian2/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
         <script src="{{asset('antrian/js/scripts.js')}}"></script>
+        @yield('js')
     </body>
 </html>

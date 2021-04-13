@@ -10,6 +10,8 @@ try {
     window.Popper = require('popper.js').default;
 
     require('bootstrap');
+    window.htmltoCanvas = require("./components/hcanva");    
+    window.canvasReady = true;
 } catch (e) {}
 
 /**
